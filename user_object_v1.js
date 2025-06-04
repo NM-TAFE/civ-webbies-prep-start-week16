@@ -1,3 +1,4 @@
+// DATA
 let user = {
   id: 12345,
   name: {
@@ -49,6 +50,7 @@ let user = {
   referral: null,
 };
 
+// TEMPLATE
 let profileHTML = `
   <div class="box">
     <h2 class="title is-4">Personal Information</h2>
@@ -57,7 +59,9 @@ let profileHTML = `
       <p><strong>Name:</strong> ${user.name.firstName} ${user.name.lastName}</p>
       <p><strong>Age:</strong> ${user.age}</p>
       <p><strong>Balance:</strong> $${user.balance.toFixed(2)}</p>
-      <p><strong>Address:</strong> ${user.address.street}, ${user.address.city}, ${user.address.state} ${user.address.postalCode}</p>
+      <p><strong>Address:</strong> ${user.address.street}, ${
+  user.address.city
+}, ${user.address.state} ${user.address.postalCode}</p>
       <p><strong>Join Date:</strong> ${user.joinDate.toLocaleDateString()}</p>
       <p><strong>Last Login:</strong> ${user.lastLogin.toLocaleDateString()}</p>
     </div>
@@ -66,28 +70,19 @@ let profileHTML = `
   <div class="box">
     <h2 class="title is-4">Orders</h2>
     <div class="content">
-      <ul>
-        <li class="mb-4">
-          <strong>Order ID:</strong> ${user.orders[0].orderId}<br>
-          <strong>Product:</strong> ${user.orders[0].product}<br>
-          <strong>Quantity:</strong> ${user.orders[0].quantity}<br>
-          <strong>Price:</strong> $${user.orders[0].price.toFixed(2)}<br>
-          <strong>Date:</strong> ${user.orders[0].date.toLocaleDateString()}
-        </li>
-        <li class="mb-4">
-          <strong>Order ID:</strong> ${user.orders[1].orderId}<br>
-          <strong>Product:</strong> ${user.orders[1].product}<br>
-          <strong>Quantity:</strong> ${user.orders[1].quantity}<br>
-          <strong>Price:</strong> $${user.orders[1].price.toFixed(2)}<br>
-          <strong>Date:</strong> ${user.orders[1].date.toLocaleDateString()}
-        </li>
-        <li class="mb-4">
-          <strong>Order ID:</strong> ${user.orders[2].orderId}<br>
-          <strong>Product:</strong> ${user.orders[2].product}<br>
-          <strong>Quantity:</strong> ${user.orders[2].quantity}<br>
-          <strong>Price:</strong> $${user.orders[2].price.toFixed(2)}<br>
-          <strong>Date:</strong> ${user.orders[2].date.toLocaleDateString()}
-        </li>
+      ${user.orders.map(
+        (order) => `
+        <div class="card mb-3">
+          <div class="card-content">
+            <strong>Order ID:</strong> ${order.orderId}<br>
+            <strong>Product:</strong> ${order.product}<br>
+            <strong>Quantity:</strong> ${order.quantity}<br>
+            <strong>Price:</strong> $${order.price.toFixed(2)}<br>
+            <strong>Date:</strong> ${order.date.toLocaleDateString()}
+          </div>
+        </div>
+      `
+      )}
       </ul>
     </div>
   </div>
@@ -96,14 +91,26 @@ let profileHTML = `
   <div class="box">
     <h2 class="title is-4">Preferences</h2>
     <div class="content">
-      <p><strong>Newsletter:</strong> ${user.preferences.newsletter ? "Subscribed" : "Not Subscribed"}</p>
-      <p><strong>Email Notifications:</strong> ${user.preferences.notifications.email ? "Enabled" : "Disabled"}</p>
-      <p><strong>SMS Notifications:</strong> ${user.preferences.notifications.sms ? "Enabled" : "Disabled"}</p>
+      <p><strong>Newsletter:</strong> ${
+        user.preferences.newsletter ? "Subscribed" : "Not Subscribed"
+      }</p>
+      <p><strong>Email Notifications:</strong> ${
+        user.preferences.notifications.email ? "Enabled" : "Disabled"
+      }</p>
+      <p><strong>SMS Notifications:</strong> ${
+        user.preferences.notifications.sms ? "Enabled" : "Disabled"
+      }</p>
       <p><strong>Favorite Categories:</strong></p>
       <div class="tags">
-        <span class="tag is-info is-light">${user.preferences.favoriteCategories[0]}</span>
-        <span class="tag is-info is-light">${user.preferences.favoriteCategories[1]}</span>
-        <span class="tag is-info is-light">${user.preferences.favoriteCategories[2]}</span>
+        <span class="tag is-info is-light">${
+          user.preferences.favoriteCategories[0]
+        }</span>
+        <span class="tag is-info is-light">${
+          user.preferences.favoriteCategories[1]
+        }</span>
+        <span class="tag is-info is-light">${
+          user.preferences.favoriteCategories[2]
+        }</span>
       </div>
     </div>
   </div>
@@ -112,9 +119,11 @@ let profileHTML = `
     <h2 class="title is-4">Account</h2>
     <div class="content">
       <p><strong>Login Attempts:</strong> ${user.loginAttempts}</p>
-      <p><strong>Referral:</strong> ${user.referral ? user.referral : "No referral"}</p>
+      <p><strong>Referral:</strong> ${
+        user.referral ? user.referral : "No referral"
+      }</p>
     </div>
   </div>
 `;
-
+// RENDER
 document.getElementById("user-profile").innerHTML = profileHTML;
