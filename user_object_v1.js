@@ -51,7 +51,7 @@ let user = {
 };
 
 function formatCurrency(value) {
-  return `AUD${value.toFixed(2)}`;
+  return `AUD ${value.toFixed(2)}`;
 }
 
 function formatDate(date) {
