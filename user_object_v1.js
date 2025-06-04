@@ -102,15 +102,9 @@ let profileHTML = `
       }</p>
       <p><strong>Favorite Categories:</strong></p>
       <div class="tags">
-        <span class="tag is-info is-light">${
-          user.preferences.favoriteCategories[0]
-        }</span>
-        <span class="tag is-info is-light">${
-          user.preferences.favoriteCategories[1]
-        }</span>
-        <span class="tag is-info is-light">${
-          user.preferences.favoriteCategories[2]
-        }</span>
+        ${user.preferences.favoriteCategories.map(
+          (category) => `<span class="tag is-info is-light">${category}</span>`
+        )}
       </div>
     </div>
   </div>
