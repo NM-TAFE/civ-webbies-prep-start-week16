@@ -50,6 +50,13 @@ let user = {
   referral: null,
 };
 
+function formatCurrency(value) {
+  return `AUD${value.toFixed(2)}`;
+}
+
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
 // TEMPLATE
 let profileHTML = `
   <div class="box">
@@ -58,12 +65,12 @@ let profileHTML = `
       <p><strong>ID:</strong> ${user.id}</p>
       <p><strong>Name:</strong> ${user.name.firstName} ${user.name.lastName}</p>
       <p><strong>Age:</strong> ${user.age}</p>
-      <p><strong>Balance:</strong> $${user.balance.toFixed(2)}</p>
+      <p><strong>Balance:</strong> ${formatCurrency(user.balance)}</p>
       <p><strong>Address:</strong> ${user.address.street}, ${
   user.address.city
 }, ${user.address.state} ${user.address.postalCode}</p>
-      <p><strong>Join Date:</strong> ${user.joinDate.toLocaleDateString()}</p>
-      <p><strong>Last Login:</strong> ${user.lastLogin.toLocaleDateString()}</p>
+      <p><strong>Join Date:</strong> ${formatDate(user.joinDate)}</p>
+      <p><strong>Last Login:</strong> ${formatDate(user.lastLogin)}</p>
     </div>
   </div>
 
@@ -77,8 +84,8 @@ let profileHTML = `
             <strong>Order ID:</strong> ${order.orderId}<br>
             <strong>Product:</strong> ${order.product}<br>
             <strong>Quantity:</strong> ${order.quantity}<br>
-            <strong>Price:</strong> $${order.price.toFixed(2)}<br>
-            <strong>Date:</strong> ${order.date.toLocaleDateString()}
+            <strong>Price:</strong> ${formatCurrency(order.price)}<br>
+            <strong>Date:</strong> ${formatDate(order.date)}
           </div>
         </div>
       `
